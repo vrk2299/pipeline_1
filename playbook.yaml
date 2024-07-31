@@ -1,5 +1,6 @@
 ---
 - name: Configure EC2 instance
+  remote_user: root
   hosts: all
   become: yes
   tasks:
