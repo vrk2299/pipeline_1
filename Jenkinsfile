@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/your-repo/terraform-ec2.git'
+                git 'https://github.com/vrk2299/pipeline_1'
             }
         }
 
