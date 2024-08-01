@@ -42,10 +42,10 @@ resource "aws_instance" "my_server" {
 
   provisioner "local-exec" {
     command = <<EOT
-      sleep 200
-      ssh-keygen -R ${self.public_ip}
-      export ANSIBLE_HOST_KEY_CHECKING=False
-      ansible-playbook -i ${self.public_ip}, playbook.yaml --private-key /tmp/keys/mum.pem -u ec2-user
+      sudo sleep 200
+      sudo ssh-keygen -R ${self.public_ip}
+      sudo export ANSIBLE_HOST_KEY_CHECKING=False
+      sudo ansible-playbook -i ${self.public_ip}, playbook.yaml --private-key /tmp/keys/mum.pem -u ec2-user
     EOT
   }
 }
