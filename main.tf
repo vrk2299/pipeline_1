@@ -20,7 +20,7 @@ provider "aws" {
 resource "aws_instance" "my_server" {
   instance_type        = "t2.micro"
   ami                  = "ami-02a2af70a66af6dfb"
-  key_name             = "newone"
+  key_name             = "mum"
   availability_zone    = "ap-south-1b"
   hibernation          = true
 
