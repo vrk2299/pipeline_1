@@ -41,7 +41,7 @@ resource "aws_instance" "my_server" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 120 ; sudo ansible-playbook -i ${self.public_ip}, playbook.yml --private-key /tmp/keys/mum.pem"
+    command = "sleep 120 ; sudo ansible-playbook -i ${self.public_ip}, playbook.yaml --private-key /tmp/keys/mum.pem"
   }
 }
 
