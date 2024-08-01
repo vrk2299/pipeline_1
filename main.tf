@@ -18,11 +18,11 @@ provider "aws" {
 }
 
 resource "aws_instance" "my_server" {
-  instance_type        = "t2.micro"
-  ami                  = "ami-068e0f1a600cd311c"
-  key_name             = "mum"
-  availability_zone    = "ap-south-1b"
-  hibernation          = true
+  instance_type     = "t2.micro"
+  ami               = "ami-068e0f1a600cd311c"
+  key_name          = "mum"
+  availability_zone = "ap-south-1b"
+  hibernation       = true
 
   root_block_device {
     encrypted   = true
@@ -34,14 +34,18 @@ resource "aws_instance" "my_server" {
   }
 
   ebs_block_device {
-    device_name             = "/dev/sdb"
-    volume_size             = 8
-    encrypted               = true
-    delete_on_termination   = true
+    device_name           = "/dev/sdb"
+    volume_size           = 8
+    encrypted             = true
+    delete_on_termination = true
   }
 
   provisioner "local-exec" {
-    command = "sleep 120 ; ANSIBLE_HOST_KEY_CHECKING=FALSE sudo ansible-playbook -i ${self.public_ip}, playbook.yaml --private-key /tmp/keys/mum.pem "
+    command = <<EOT
+      sleep 120
+      export ANSIBLE_HOST_KEY_CHECKING=False
+      sudo ansible-playbook -i ${self.public_ip}, playbook.yaml --private-key /tmp/keys/mum.pem
+    EOT
   }
 }
 
