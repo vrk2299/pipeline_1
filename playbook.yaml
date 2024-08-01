@@ -1,8 +1,9 @@
 ---
 - name: Configure EC2 instance
   remote_user: root
-  hosts: all
   become: yes
+  become_method: sudo
+  hosts: all
   tasks:
     - name: Install Apache
       yum:
